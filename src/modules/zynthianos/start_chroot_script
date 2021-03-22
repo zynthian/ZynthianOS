@@ -12,46 +12,9 @@ alias bash='bash -x'
 source /common.sh
 install_cleanup_trap
 
-unpack /filesystem/home/pi /home/pi pi
-unpack /filesystem/home/root /root root
-unpack /filesystem/boot /boot
+# Update Zynthian
+/zynthian/zynthian-sys/scripts/update_zynthian.sh
 
-# Unpack root at the end, so files are modified before
-unpack /filesystem/root /
-
-# Install needed packages
-apt-get -y install git 
-
-# Prepare dirs
-sudo -u pi mkdir -p /home/pi/build
-ln -s /home/pi /zynthian
-
-pushd /home/pi/build
-    gitclone ZYNTHIANOS_SYS_REPO zynthian-sys
-    pushd zynthian-sys/scripts
-        export ZYNTHIAN_INCLUDE_RPI_UPDATE=no
-        export ZYNTHIAN_INCLUDE_PIP=yes
-        export ZYNTHIAN_CHANGE_HOSTNAME=yes
-        export ZYNTHIAN_SYS_REPO=${ZYNTHIANOS_SYS_REPO}
-        export ZYNTHIAN_SYS_BRANCH=${ZYNTHIANOS_SYS_REPO_BRANCH}
-        bash -x setup_system_rbpi_raspbian_lite_buster.sh
-    popd
-popd
-
-# Cleanup build directory
-rm -rf /home/pi/build
-rm -f /home/pi/README
-
-# Copy Soundfonts
-unpack /filesystem/soundfonts /zynthian/zynthian-data/soundfonts
-
-# Make root password raspberry
-echo root:raspberry | chpasswd
-
-# Allow SSH root login
-echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
-sed -i 's/PermitRootLogin without-password//g' /etc/ssh/sshd_config
-
-# Disable User Pi
-passwd -l pi
+# Enable first-boot service
+systemctl enable first_boot
 
