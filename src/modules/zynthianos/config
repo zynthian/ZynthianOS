@@ -1,7 +1,7 @@
 ###############################################################################
 # All this module config settings must start with ZYNTHIANOS_
 
-[ -n "$BASE_ZIP_IMG" ] || BASE_ZIP_IMG=`ls -t $BASE_IMAGE_PATH/*-realtimepi*.zip | head -n 1`
+[ -n "$BASE_ZIP_IMG" ] || BASE_ZIP_IMG=`ls -t $BASE_IMAGE_PATH/*raspios-buster*.zip | head -n 1`
 #  repo zynthian-sys & branch
 [ -n "$ZYNTHIANOS_SYS_REPO_SHIP" ] || ZYNTHIANOS_SYS_REPO_SHIP=https://github.com/zynthian/zynthian-sys.git
 [ -n "$ZYNTHIANOS_SYS_REPO_BUILD" ] || ZYNTHIANOS_SYS_REPO_BUILD=
