@@ -1,11 +1,11 @@
 export DIST_NAME=ZynthianOS
-export DIST_VERSION=1.0.0
-export MODULES="base(network, disable-services(zynthianos))"
+export DIST_VERSION=2103
+export MODULES="base(disable-services(zynthianos))"
 export BASE_OVERRIDE_HOSTNAME=zynthian
 
 # if set will enlarge root parition prior to build by provided size in MB
 #export BASE_IMAGE_ENLARGEROOT=14000
-export BASE_IMAGE_ENLARGEROOT=34500
+export BASE_IMAGE_ENLARGEROOT=16500
 
 
 # if set will resize root partition on image after build to minimum size + 
