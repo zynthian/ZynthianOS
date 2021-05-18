@@ -4,8 +4,7 @@ export MODULES="base(disable-services(zynthianos))"
 export BASE_OVERRIDE_HOSTNAME=zynthian
 
 # if set will enlarge root parition prior to build by provided size in MB
-#export BASE_IMAGE_ENLARGEROOT=14000
-export BASE_IMAGE_ENLARGEROOT=16500
+export BASE_IMAGE_ENLARGEROOT=6000
 
 
 # if set will resize root partition on image after build to minimum size + 
