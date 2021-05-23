@@ -40,15 +40,6 @@ cd $ZYNTHIAN_SYS_DIR
 git checkout .
 git pull
 
-
-#------------------------------------------------------------------------------
-# Update System ...
-#------------------------------------------------------------------------------
-
-apt-get -y update
-apt-get -y upgrade
-
-
 #------------------------------------------------------------------------------
 # Call update subscripts ...
 #------------------------------------------------------------------------------
@@ -60,12 +51,26 @@ cd ./scripts
 ./update_zynthian_sys.sh
 ./update_zynthian_code.sh
 
+#------------------------------------------------------------------------------
+# Update System ...
+#------------------------------------------------------------------------------
+
+apt-get -y update
+apt-get -y upgrade
+
+#------------------------------------------------------------------------------
+# Adjustments ...
+#------------------------------------------------------------------------------
+
 # Copy the plugins configuration that is strangely lost
 cp "$ZYNTHIAN_SYS_DIR/config/default_jalv_plugins.json" "/zynthian/config/jalv/plugins.json"
 
 # Copy default snapshots
 cp -a $ZYNTHIAN_DATA_DIR/snapshots/* $ZYNTHIAN_MY_DATA_DIR/snapshots/000
 
+#------------------------------------------------------------------------------
+# Update TimeStamp, clean everything and ends...
+#------------------------------------------------------------------------------
 
 # Update Build Info TimeStamp
 TIMESTAMP=$(date --rfc-3339=date)
